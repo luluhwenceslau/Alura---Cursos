@@ -1,9 +1,21 @@
+
 const btnAdicionaTask = document.querySelector('.app__button--add-task');
 const formAdicionaTarefa = document.querySelector('.app__form-add-task');
 const textArea = document.querySelector('.app__form-textarea');
 const ulTarefas = document.querySelector('.app__section-task-list');
+const btnCancelar = document.querySelector('.app__form-footer__button--cancel');
+const pDescricaoTarefa = document.querySelector('.app__section-active-task-description');
 
-const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+const btnRemoverConcluidas = document.querySelector('#btn-remover-concluidas');
+const btnRemoverTodas = document.querySelector('#btn-remover-todas');
+
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+let tarefaSelecionada = null;
+let liTarefaSelecionada = null;
+
+function atualizaTarefa(){
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
 
 function criarElementoTarefa(tarefa){
     const li = document.createElement('li');
@@ -24,8 +36,13 @@ function criarElementoTarefa(tarefa){
     botao.classList.add('app_button-edit');
 
     botao.onclick = () =>{
-       const novaDescricao = prompt("Qual é o novo nome da tarefa?");
-       paragrafo.textContent = novaDescricao;
+        //debugger;
+        const novaDescricao = prompt("Qual é o novo nome da tarefa?");
+        if(novaDescricao){
+            paragrafo.textContent = novaDescricao;
+            tarefa.descricao = novaDescricao;
+            atualizaTarefa();
+       }
     }
 
     const imgBotao = document.createElement('img');
@@ -35,6 +52,29 @@ function criarElementoTarefa(tarefa){
     li.append(svg);
     li.append(paragrafo);
     li.append(botao);
+
+    if(tarefa.completa){
+        li.classList.add('app__section-task-list-item-complete');
+        botao.setAttribute('disabled', 'disabled');
+    }else{
+        li.onclick = () =>{
+            document.querySelectorAll('.app__section-task-list-item-active')
+                .forEach(elemento => {
+                    elemento.classList.remove('app__section-task-list-item-active');
+                })
+            if(tarefaSelecionada == tarefa){
+                pDescricaoTarefa.textContent = '';
+                tarefaSelecionada = null;
+                liTarefaSelecionada = null;
+                return;
+            }
+            tarefaSelecionada = tarefa;
+            liTarefaSelecionada = li;
+            pDescricaoTarefa.textContent = tarefa.descricao;
+            
+            li.classList.add('app__section-task-list-item-active');
+        }
+    }
 
     return li;
 }
@@ -51,7 +91,7 @@ formAdicionaTarefa.addEventListener('submit', (evento) => {
     tarefas.push(tarefa);
     const elementoTarefa = criarElementoTarefa(tarefa);
     ulTarefas.append(elementoTarefa);
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    atualizaTarefa();
     textArea.value = '';
     formAdicionaTarefa.classList.add('hidden');
 })
@@ -60,3 +100,32 @@ tarefas.forEach(tarefa => {
    const elementoTarefa = criarElementoTarefa(tarefa);
    ulTarefas.append(elementoTarefa);
 })
+
+const limparFormulario = () => {
+    textArea.value = '';  
+    formularioTarefa.classList.add('hidden');  
+}
+
+btnCancelar.addEventListener('click', limparFormulario);
+
+document.addEventListener('focoFinalizado', () =>{
+    if(tarefaSelecionada && liTarefaSelecionada){
+        liTarefaSelecionada.classList.remove('app__section-task-list-item-active');
+        liTarefaSelecionada.classList.add('app__section-task-list-item-complete');
+        liTarefaSelecionada.querySelector('button').setAttribute('disabled', 'disabled');
+        tarefaSelecionada.completa = true;
+        atualizaTarefa();
+    }
+});
+
+const removerTarefas = (somenteCompletas) =>{
+    const seletor = somenteCompletas ? ".app__section-task-list-item-complete" : ".app__section-task-list-item"
+    document.querySelectorAll(seletor).forEach(elemento =>{
+        elemento.remove();
+    });
+    tarefas = somenteCompletas ? tarefas.filter(tarefa => !tarefa.completa) : []
+    atualizaTarefa();
+}
+
+btnRemoverConcluidas.onclick = () => removerTarefas(true);
+btnRemoverTodas.onclick = () => removerTarefas(false);
