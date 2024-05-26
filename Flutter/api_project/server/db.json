@@ -1,0 +1,56 @@
+{
+  "learnhttp": [
+    {
+      "id": "33cc",
+      "content": "Ola Mundo!"
+    },
+    {
+      "id": "e433",
+      "content": "Ola Mundo!"
+    }
+  ],
+  "journals": [
+    {
+      "id": "f23e4300-1aee-11ef-ab37-6f543afb1b1d",
+      "content": "Aparentemente tudo funcionando com a aplicacão.",
+      "created_at": "2024-05-20 20:30:32.673",
+      "updated_at": "2024-05-20 20:30:32.673"
+    },
+    {
+      "id": "4c878330-1aef-11ef-8439-7da89d1bec2e",
+      "content": "Hoje é sabado, tivemos feijoada",
+      "created_at": "2024-05-16 20:33:46.408",
+      "updated_at": "2024-05-16 20:33:46.408"
+    },
+    {
+      "id": "abc89fe0-1af0-11ef-96aa-4514428d359b",
+      "content": "Testando a SnackBar!! :o",
+      "created_at": "2024-05-15 20:43:58.636",
+      "updated_at": "2024-05-15 20:43:58.636"
+    },
+    {
+      "id": "324ba200-1af2-11ef-9601-d7cc6143f43d",
+      "content": "Quarta, 15/05",
+      "created_at": "2024-05-15 20:54:55.925",
+      "updated_at": "2024-05-15 20:54:55.925"
+    },
+    {
+      "id": "4503a070-1af5-11ef-b6a3-bdb6a1c5d503",
+      "content": "A temperatura está caindo cada vez mais",
+      "created_at": "2024-05-17 21:16:54.870",
+      "updated_at": "2024-05-17 21:16:54.870"
+    },
+    {
+      "id": "38ed2f80-1af6-11ef-bbb4-77cc10c6e2b9",
+      "content": "Tudo funcionando bem :D",
+      "created_at": "2024-05-23 21:23:39.567",
+      "updated_at": "2024-05-23 21:23:39.567"
+    },
+    {
+      "id": "8b0aff20-1af8-11ef-be1c-c9b161e86870",
+      "content": "Hoje terminei o curso de Flutter!!",
+      "created_at": "2024-05-25 21:40:05.614",
+      "updated_at": "2024-05-25 21:40:05.614"
+    }
+  ]
+}
