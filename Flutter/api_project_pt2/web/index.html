@@ -1,0 +1,23 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Flutter App</title>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    // Adicione este script para configurar o proxy
+    var xhrProxy = new XMLHttpRequest();
+    var proxyUrl = "http://localhost:8080"; // A URL do seu proxy
+
+    xhrProxy.open("GET", proxyUrl, false);
+    xhrProxy.send(null);
+  </script>
+</head>
+<body>
+<script src="main.dart.js" type="application/javascript"></script>
+</body>
+</html>
