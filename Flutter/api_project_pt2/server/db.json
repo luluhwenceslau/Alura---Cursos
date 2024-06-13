@@ -1,5 +1,16 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "ra120171@uem.br",
+      "password": "$2a$10$6C6QZ6OSNBNAs/G4COqGNuYt30GagVnNeTN4TIofZpLsrTFTEMLci",
+      "id": 1
+    },
+    {
+      "email": "luana.faxina293@gmail.com",
+      "password": "$2a$10$ImSPf85dBivN1jcpQpwsPOqPjMutILamEkZCc/QGazpVK1Rfh6nyW",
+      "id": 2
+    }
+  ],
   "learnhttp": [
     {
       "id": "33cc",
