@@ -1,7 +1,6 @@
 import 'package:api_project/helpers/weekday.dart';
 import 'package:api_project/services/journal_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../models/journal.dart';
 
@@ -25,7 +24,7 @@ class AddJournalScreen extends StatelessWidget {
             onPressed: () {
               registerJournal(context);
             },
-            icon: Icon(Icons.check_circle_outline),
+            icon: const Icon(Icons.check_circle_outline),
           )
         ],
       ),

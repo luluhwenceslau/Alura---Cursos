@@ -40,7 +40,7 @@ class WeekDay {
 
   @override
   String toString(){
-    return  "${long}, "
+    return  "$long, "
         "${date.day} | ${date.month} | ${date.year}";
 
   }

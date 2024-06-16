@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:logger/logger.dart';
 
@@ -10,7 +12,7 @@ class LoggerInterceptor extends InterceptorContract {
   }) async {
     print('----- Request -----');
     logger.t(request.toString());
-    //logger.t(request.headers.toString());
+    logger.t(request.headers.toString());
     return request;
   }
 

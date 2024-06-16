@@ -1,15 +1,16 @@
+// ignore_for_file: unused_local_variable, use_build_context_synchronously, prefer_final_fields
+
 import 'package:api_project/screens/common/confirmation_dialog.dart';
 import 'package:api_project/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-   LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
 
   AuthService service = AuthService();
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,8 @@ class LoginScreen extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {
                         login(context);
-                      }, child: const Text("Continuar")),
+                      },
+                      child: const Text("Continuar")),
                 ],
               ),
             ),
@@ -68,19 +70,22 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  login(BuildContext context) async{
+  login(BuildContext context) async {
     String email = _emailController.text;
     String password = _passController.text;
 
-    try{
-    bool result = await service.login(email: email, password: password);
-    } on UserNotFindException{
-      showConfirmationDialog(context, content: "Deseja criar um novo usuario usando o e-mail $email e a senha inserida?", affirmativeOption: "Criar",
-      ).then((value) =>{
-        if(value != null && value){
-          service.register(email: email, password: password)}
-        }
-      );
+    try {
+      bool result = await service.login(email: email, password: password);
+    } on UserNotFindException {
+      showConfirmationDialog(
+        context,
+        content:
+            "Deseja criar um novo usuario usando o e-mail $email e a senha inserida?",
+        affirmativeOption: "Criar",
+      ).then((value) => {
+            if (value != null && value)
+              {service.register(email: email, password: password)}
+          });
     }
   }
 }

@@ -11,16 +11,6 @@
       "id": 2
     }
   ],
-  "learnhttp": [
-    {
-      "id": "33cc",
-      "content": "Ola Mundo!"
-    },
-    {
-      "id": "e433",
-      "content": "Ola Mundo!"
-    }
-  ],
   "journals": [
     {
       "id": "4c878330-1aef-11ef-8439-7da89d1bec2e",
@@ -33,54 +23,6 @@
       "content": "Testando a SnackBar!! :o",
       "created_at": "2024-05-15 20:43:58.636",
       "updated_at": "2024-05-15 20:43:58.636"
-    },
-    {
-      "id": "324ba200-1af2-11ef-9601-d7cc6143f43d",
-      "content": "Quarta, 15/05",
-      "created_at": "2024-05-15 20:54:55.925",
-      "updated_at": "2024-05-15 20:54:55.925"
-    },
-    {
-      "id": "4503a070-1af5-11ef-b6a3-bdb6a1c5d503",
-      "content": "A temperatura está caindo cada vez mais",
-      "created_at": "2024-05-17 21:16:54.870",
-      "updated_at": "2024-05-17 21:16:54.870"
-    },
-    {
-      "id": "38ed2f80-1af6-11ef-bbb4-77cc10c6e2b9",
-      "content": "Tudo funcionando bem :D",
-      "created_at": "2024-05-23 21:23:39.567",
-      "updated_at": "2024-05-23 21:23:39.567"
-    },
-    {
-      "id": "6dc42c80-1ceb-11ef-b9b7-a924903489c6",
-      "content": "Esta parte do projeto esta terminada!! :)",
-      "created_at": "2024-05-28 09:11:14.359",
-      "updated_at": "2024-05-28 09:11:14.359"
-    },
-    {
-      "id": "9219c770-1ceb-11ef-b9b7-a924903489c6",
-      "content": "Passei muito frio e o tempo tambem estava muito chuvoso!! :/",
-      "created_at": "2024-05-27 09:11:14.359",
-      "updated_at": "2024-05-27 09:11:14.359"
-    },
-    {
-      "id": "5cc4c140-1ced-11ef-a9ef-272fbe7bd067",
-      "content": "Teste",
-      "created_at": "2024-05-18 09:25:18.412",
-      "updated_at": "2024-05-18 09:25:18.412"
-    },
-    {
-      "id": "6ce441e0-1ced-11ef-a9ef-272fbe7bd067",
-      "content": "UEEEEEE",
-      "created_at": "2024-05-18 09:25:18.412",
-      "updated_at": "2024-05-18 09:25:18.412"
-    },
-    {
-      "id": "2d7c3480-1cf3-11ef-92b2-7f36606e078e",
-      "content": "Alguns funcionam, outros nop",
-      "created_at": "2024-05-18 10:05:22.987",
-      "updated_at": "2024-05-18 10:05:22.987"
     }
   ]
 }

@@ -1,4 +1,5 @@
-import 'package:api_project/helpers/async_study.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:api_project/models/journal.dart';
 import 'package:api_project/screens/add_journal_screen/add_journal_screen.dart';
 import 'package:api_project/services/journal_service.dart';
@@ -14,7 +15,6 @@ void main() {
     //service.register(Journal.empty());
     //service.getAll();
 
-    asyncStudy();
 }
 
 class MyApp extends StatelessWidget {

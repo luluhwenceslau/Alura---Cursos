@@ -154,8 +154,8 @@ class JournalCard extends StatelessWidget {
         if (value) {
           service.delete(journal!.id).then((value) {
             if (value) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: const Text("Removido com sucesso!"),
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Removido com sucesso!"),
               ));
             }
             refreshFunction();
