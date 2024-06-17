@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const String url = "http://192.168.15.27:3000/";
+  static const String url = "http://10.253.33.1:3000/";
 
   http.Client client =
       InterceptedClient.build(interceptors: [LoggerInterceptor()]);
@@ -35,7 +35,8 @@ class AuthService {
     return true;
   }
 
-  Future<void> register({required String password, required String email}) async {
+  Future<bool> register(
+      {required String password, required String email}) async {
     http.Response response = await client.post(
       Uri.parse('${url}register'),
       headers: {'Content-Type': 'application/json'},
@@ -47,6 +48,7 @@ class AuthService {
     }
 
     saveUsersInfos(response.body);
+    return true;
   }
 
   saveUsersInfos(String body) async {

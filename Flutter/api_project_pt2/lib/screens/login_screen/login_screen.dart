@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, use_build_context_synchronously, prefer_final_fields
+// ignore_for_file: unused_local_variable, use_build_context_synchronously, prefer_final_fields, must_be_immutable
 
 import 'package:api_project/screens/common/confirmation_dialog.dart';
 import 'package:api_project/services/auth_service.dart';
@@ -75,7 +75,11 @@ class LoginScreen extends StatelessWidget {
     String password = _passController.text;
 
     try {
-      bool result = await service.login(email: email, password: password);
+      service.login(email: email, password: password).then((resultLogin) {
+        if (resultLogin) {
+          Navigator.pushReplacementNamed(context, "home");
+        }
+      });
     } on UserNotFindException {
       showConfirmationDialog(
         context,
@@ -84,8 +88,17 @@ class LoginScreen extends StatelessWidget {
         affirmativeOption: "Criar",
       ).then((value) => {
             if (value != null && value)
-              {service.register(email: email, password: password)}
-          });
+              {
+                service
+                    .register(email: email, password: password)
+                    .then((resultRegister) {
+                  if (resultRegister) {
+                    Navigator.pushReplacementNamed(context, "home");
+                  }
+                })
+              }
+          }
+       );
     }
   }
 }

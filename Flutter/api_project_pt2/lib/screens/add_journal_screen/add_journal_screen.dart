@@ -1,6 +1,7 @@
 import 'package:api_project/helpers/weekday.dart';
 import 'package:api_project/services/journal_service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/journal.dart';
 
@@ -46,18 +47,23 @@ class AddJournalScreen extends StatelessWidget {
   }
 
   registerJournal(BuildContext context) {
-    String content = _contentController.text;
+    SharedPreferences.getInstance().then((prefs) {
+      String? token = prefs.getString("accessToken");
+      if(token != null){
+        String content = _contentController.text;
 
     journal.content = content;
     JournalService service = JournalService();
     if (isEditing) {
-      service.register(journal).then((value) {
+      service.register(journal, token).then((value) {
         Navigator.pop(context, value);
       });
     } else {
-      service.edit(journal.id, journal).then((value) {
+      service.edit(journal.id, journal, token).then((value) {
         Navigator.pop(context, value);
       });
     }
+      }
+    });
   }
 }
