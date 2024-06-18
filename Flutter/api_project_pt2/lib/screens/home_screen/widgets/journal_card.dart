@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:api_project/helpers/weekday.dart';
 import 'package:api_project/screens/common/confirmation_dialog.dart';
 import 'package:api_project/services/journal_service.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import '../../../helpers/logout.dart';
 import '../../../models/journal.dart';
+import '../../common/exception_dialog.dart';
 
 class JournalCard extends StatelessWidget {
   final Journal? journal;
@@ -121,8 +125,7 @@ class JournalCard extends StatelessWidget {
         content: "",
         createdAt: showedDate,
         updatedAt: showedDate,
-        userId: userId
-        );
+        userId: userId);
 
     Map<String, dynamic> map = {};
 
@@ -158,14 +161,27 @@ class JournalCard extends StatelessWidget {
               affirmativeOption: "Remover")
           .then((value) {
         if (value) {
-          service.delete(journal!.id, token).then((value) {
-            if (value) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text("Removido com sucesso!"),
-              ));
-            }
-            refreshFunction();
-          });
+          service.delete(journal!.id, token).then(
+            (value) {
+              if (value) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Removido com sucesso!"),
+                ));
+              }
+              refreshFunction();
+            },
+          ).catchError(
+            (error) {
+              logout(context);
+            },
+            test: (error) => error is TokenNotValidException,
+          ).catchError(
+            (error) {
+              var innerError = error as HttpException;
+              showExceptionDialog(context, content: innerError.message);
+            },
+            test: (error) => error is HttpException,
+          );
         }
       });
     }

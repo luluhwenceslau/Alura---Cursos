@@ -1,8 +1,12 @@
 // ignore_for_file: unused_local_variable, use_build_context_synchronously, prefer_final_fields, must_be_immutable
 
+import 'dart:io';
+
 import 'package:api_project/screens/common/confirmation_dialog.dart';
 import 'package:api_project/services/auth_service.dart';
 import 'package:flutter/material.dart';
+
+import '../common/exception_dialog.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -74,13 +78,19 @@ class LoginScreen extends StatelessWidget {
     String email = _emailController.text;
     String password = _passController.text;
 
-    try {
-      service.login(email: email, password: password).then((resultLogin) {
+    service.login(email: email, password: password).then(
+      (resultLogin) {
         if (resultLogin) {
           Navigator.pushReplacementNamed(context, "home");
         }
-      });
-    } on UserNotFindException {
+      },
+    ).catchError(
+      (error) {
+        var innerError = error as HttpException;
+        showExceptionDialog(context, content: innerError.message);
+      },
+      test: (error) => error is HttpException,
+    ).catchError((error) {
       showConfirmationDialog(
         context,
         content:
@@ -97,8 +107,7 @@ class LoginScreen extends StatelessWidget {
                   }
                 })
               }
-          }
-       );
-    }
+          });
+    }, test: (error) => error is UserNotFindException);
   }
 }

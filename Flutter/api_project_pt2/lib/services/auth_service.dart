@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const String url = "http://10.253.33.1:3000/";
+  static const String url = "http://10.253.35.138:3000/";
 
   http.Client client =
       InterceptedClient.build(interceptors: [LoggerInterceptor()]);
