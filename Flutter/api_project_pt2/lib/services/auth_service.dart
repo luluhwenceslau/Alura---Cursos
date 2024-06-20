@@ -1,17 +1,12 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 import 'dart:io';
-import 'package:api_project/services/http_interceptor.dart';
-import 'package:http_interceptor/http_interceptor.dart';
+import 'package:api_project/services/web_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const String url = "http://10.253.35.138:3000/";
-
-  http.Client client =
-      InterceptedClient.build(interceptors: [LoggerInterceptor()]);
+  String url = WebClient.url;
+  http.Client client = WebClient().client;
 
   Future<bool> login({required String email, required String password}) async {
     http.Response response = await client.post(
@@ -62,9 +57,6 @@ class AuthService {
     prefs.setString("accessToken", token);
     prefs.setString("email", email);
     prefs.setInt("id", id);
-
-    String? tokenSalvo = prefs.getString("accessToken");
-    print(tokenSalvo);
   }
 }
 
